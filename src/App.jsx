@@ -19,9 +19,11 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
       </Route>
-    )
+    ),{
+      basename : '/ecom-rtk'
+    }
   );
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router}  />;
 }
 
 export default App;
