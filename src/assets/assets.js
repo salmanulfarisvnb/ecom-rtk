@@ -95,7 +95,7 @@ export const assets = {
     cross_icon
 }
 
-export const products = [
+export const mockData = [
     {
         _id: "aaaaa",
         name: "Women Round Neck Cotton Top",

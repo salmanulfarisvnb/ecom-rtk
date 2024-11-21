@@ -9,6 +9,8 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
   const router = createBrowserRouter(
@@ -23,7 +25,11 @@ function App() {
       basename : '/ecom-rtk'
     }
   );
-  return <RouterProvider router={router}  />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />;
+    </Provider>
+  );
 }
 
 export default App;
