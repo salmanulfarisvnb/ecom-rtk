@@ -2,18 +2,11 @@ import React, { useEffect } from 'react'
 import manCategorey from "../assets/images/man-cat.png"
 import womemCat from "../assets/images/women-cat.png"
 import kidCat from "../assets/images/kid-cat.png";
-import { useDispatch, useSelector } from 'react-redux';
-import { setProducts } from '../redux/productSlice';
- import { mockData } from '../assets/assets';
 
 
 const CategorySection = () => {
 
-  const dispatch = useDispatch()
-  const  {products} = useSelector(state=>state.product)
-  useEffect(()=>{
-    dispatch(setProducts(mockData))
-  },[])
+ 
     const section = [
       {
         
@@ -32,8 +25,6 @@ const CategorySection = () => {
       },
       
     ];
-
-    console.log(products);
     
     
   return (

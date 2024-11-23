@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Categories } from "../assets/mockData";
 import { assests } from "../assets/images";
 import InfoSection from "../components/InfoSection";
 import CategorySection from "../components/CategorySection";
+import ProductCard from "../components/ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import {setProducts} from "../redux/productSlice"
+import {mockData} from "../assets/assets"
+
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const {products}= useSelector((state)=>state.product);
+
+  useEffect(()=>{
+    dispatch(setProducts(mockData))
+  },[])
+
+ 
+
   return (
     <div className="w-full p-4 mx-auto md:p-8 xl:p-12">
       <div className="container flex flex-col items-center justify-center py-4 mx-auto gap-x-2 md:items-start md:flex-row">
@@ -15,8 +29,8 @@ const Home = () => {
           </div>
           <ul className="p-3 space-y-3 font-medium bg-gray-100 border md:font-normal md:">
             {Categories.map((item, index) => (
-              <li className="flex items-center pl-2 group gap-x-2 " key={index}>
-                <div className="border group-hover:bg-red-500 border-red-500 rounded-full size-2.5"></div>{" "}
+              <li className="flex items-center pl-2 cursor-pointer group gap-x-2 " key={index}>
+                <div className="border group-hover:bg-red-500  border-red-500 rounded-full size-2.5"></div>{" "}
                 {item}
               </li>
             ))}
@@ -40,10 +54,15 @@ const Home = () => {
           </div>
         </div>
       </div>
-      
         <InfoSection />
         <CategorySection/>
-      
+        <div className="container py-12 mx-auto ">
+          <h2 className="text-xl font-bold text-center">Top Product</h2><div className="grid grid-cols-1 gap-3 my-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+           {products.slice(2,7).map((item,index)=>(
+            <ProductCard products={item} index={index}/>
+           ))}
+          </div>
+        </div>  
     </div>
   );
 };
