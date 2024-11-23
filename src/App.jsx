@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import Cart from "./components/Cart";
 
 function App() {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ function App() {
         <Route path="shop" element={<Shop />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
+        <Route path="cart" element={<Cart/>}/>
       </Route>
     ),{
       basename : '/ecom-rtk'

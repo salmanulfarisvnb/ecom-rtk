@@ -42,8 +42,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <hr className="border-gray-500" />
-      <div className="flex justify-between mt-3 text-xs text-white ">
+      <hr className="border-gray-500 mt-7" />
+      <div className="flex justify-between mt-8 text-xs text-white ">
         <p>© 2024 Your Company Name. All rights reserved.</p>
         <p>
           Privacy police Term 
