@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const {quantity} = useSelector(state=>state.cart)
+  const {cart} = useSelector(state=>state.cart)
   return (
     <nav className="sticky top-[-5rem] z-10 bg-white shadow-md ">
       <div className="container flex items-center justify-between p-4 mx-auto xl:p-12">
@@ -25,11 +25,11 @@ const Navbar = () => {
           <Link to={"cart"}>
             <div className="relative ">
               <FaShoppingCart className="text-2xl " />
-              {quantity === 0 ? (
+              {cart.length === 0 ? (
                 ""
               ) : (
                 <p className="absolute top-[-12px] right-[-8px] flex items-center justify-center text-[10px] font-black bg-yellow-300 rounded-full w-full h-full ftext-white rig justify-centerht-0">
-                  {quantity}
+                  {cart.length}
                 </p>
               )}
             </div>

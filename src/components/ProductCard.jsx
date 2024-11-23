@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/cartSlice';
 
 const ProductCard = ({products}) => {
+ 
   const dispatch = useDispatch();
 
 
@@ -13,8 +14,10 @@ const ProductCard = ({products}) => {
       dispatch(addToCart(products));
       alert("added succesfully");
     };
-   
   
+   
+   
+   
   return (
     
       <div className="transition-transform transform border rounded-md hover:scale-105 ">
