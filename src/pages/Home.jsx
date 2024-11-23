@@ -7,6 +7,7 @@ import ProductCard from "../components/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import {setProducts} from "../redux/productSlice"
 import {mockData} from "../assets/assets"
+import Shop from "./Shop";
 
 
 const Home = () => {
@@ -57,12 +58,15 @@ const Home = () => {
         <InfoSection />
         <CategorySection/>
         <div className="container py-12 mx-auto ">
-          <h2 className="text-xl font-bold text-center">Top Product</h2><div className="grid grid-cols-1 gap-3 my-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-           {products.slice(2,7).map((item,index)=>(
-            <ProductCard products={item} index={index}/>
+          <h2 className="text-xl font-bold text-center mb-7">Top Product</h2><div className="grid gap-3 grid-rows-1-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+           {products.slice(0,5).map((item,index)=>(
+            <ProductCard key={index} products={item} />
            ))}
           </div>
         </div>  
+        <div>
+          <Shop/>
+        </div>
     </div>
   );
 };

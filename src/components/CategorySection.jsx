@@ -28,7 +28,7 @@ const CategorySection = () => {
     
     
   return (
-    <div className="container max-w-[1100px] grid gap-6 mx-auto mt-16 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="container max-w-[1100px] grid gap-6 mx-auto mt-16 sm:grid-cols-2 md:grid-cols-3">
       {section.map((item, index) => (
         <div
           className="relative overflow-hidden transition-transform duration-200 transform border rounded-lg hover:scale-105"
