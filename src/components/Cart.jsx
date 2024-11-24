@@ -9,6 +9,7 @@ import {
   increaseCartQuantity,
   removeFromCart,
 } from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Cart = () => {
   const { totalPrice } = useSelector((state) => state.cart);
   const [address, setAddress] = useState("calicut po");
   const [model, setModel] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -206,7 +208,10 @@ const Cart = () => {
                 </p>
               </div>
               <div className="flex items-center justify-center mt-5">
-                <button className="p-3 font-bold text-white uppercase transition-transform transform bg-red-500 border rounded-lg hover:ring-1 ring-black active:scale-95">
+                <button
+                  onClick={() => navigate("/checkout")}
+                  className="p-3 font-bold text-white uppercase transition-transform transform bg-red-500 border rounded-lg hover:ring-1 ring-black active:scale-95"
+                >
                   Proceed to checkout
                 </button>
               </div>

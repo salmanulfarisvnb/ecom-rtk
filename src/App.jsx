@@ -12,6 +12,7 @@ import About from "./pages/About";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 function App() {
   const router = createBrowserRouter(
@@ -21,10 +22,12 @@ function App() {
         <Route path="shop" element={<Shop />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
-        <Route path="cart" element={<Cart/>}/>
+        <Route path="cart" element={<Cart />} />
+        <Route path="checkout" element={<Checkout />} />
       </Route>
-    ),{
-      basename : '/ecom-rtk'
+    ),
+    {
+      basename: "/ecom-rtk",
     }
   );
   return (
