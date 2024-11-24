@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import emptyCart from "../assets/images/empty-cart.png";
 import { FaRupeeSign, FaTrash } from "react-icons/fa";
+import Model from "./Model";
+import CreateAddress from "./CreateAddress";
 
 const Cart = () => {
   const { cart } = useSelector((state) => state.cart);
   const { totalPrice } = useSelector((state) => state.cart);
+  const [address, setAddress] = useState("calicut po");
+  const [model, setModel] = useState(false);
 
   return (
     <div>
@@ -31,7 +35,7 @@ const Cart = () => {
         >
           {" "}
           <h1 className="text-xl font-bold uppercase">shopping cart</h1>
-          <div className="flex flex-col items-start justify-between sm:flex-row mt-7">
+          <div className="flex flex-col items-start justify-between gap-y-7 md:flex-row mt-7">
             <div className="flex-1">
               {" "}
               <table className="w-full table-auto">
@@ -76,7 +80,7 @@ const Cart = () => {
                 </tbody>
               </table>
             </div>
-            <div className="w-full max-w-[350px] p-4 mt-2 ml-5 border ">
+            <div className="w-full max-w-[350px] lg:p-7 p-4 mt-2 ml-5 border rounded-lg shadow-md ">
               <p className="text-sm font-medium uppercase">cart totals</p>
               <div className="flex items-center justify-between w-full mt-2">
                 <p className="text-xs font-medium text-gray-500 uppercase">
@@ -86,8 +90,14 @@ const Cart = () => {
               </div>
               <hr className="my-3 " />
               <p className="my-2 text-sm ">Shipping:</p>
-              <p className="text-xs font-medium">Shipping to </p>
-              <p className="my-2 text-xs text-blue-500 cursor-pointer hover:underline ">
+              <p className="text-xs font-medium">
+                Shipping to:{" "}
+                <span className="text-xs text-gray-600">{address}</span>{" "}
+              </p>
+              <p
+                onClick={() => setModel(true)}
+                className="my-2 text-xs text-blue-500 cursor-pointer hover:underline "
+              >
                 Change Address
               </p>
               <hr />
@@ -104,6 +114,13 @@ const Cart = () => {
               </div>
             </div>
           </div>
+          <Model model={model} setModel={setModel}>
+            <CreateAddress
+              model={model}
+              setModel={setModel}
+              setAddress={setAddress}
+            />
+          </Model>
         </div>
       )}
     </div>
