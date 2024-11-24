@@ -40,11 +40,80 @@ const Cart = () => {
           }`}
         >
           {" "}
-          <h1 className="text-xl font-bold uppercase">shopping cart</h1>
-          <div className="flex flex-col items-start justify-between gap-y-7 md:flex-row mt-7">
-            <div className="flex-1">
+          <h1 className="text-xl font-bold uppercase max-sm:text-center">
+            shopping cart
+          </h1>
+          <div className="flex flex-col items-center justify-between sm:items-start gap-y-7 md:flex-row mt-7">
+            <div className="flex items-center justify-center sm:hidden">
+              {cart.map((item, index) => (
+                <div className=" p-5 w-full max-w-[300px]" key={index}>
+                  <img
+                    className="object-contain size-[200px] w-full"
+                    src={item.image}
+                    alt=""
+                  />
+                  <p className="m-3 font-semibold">{item.name}</p>
+                  <div className="flex justify-center gap-3 mb-3">
+                    <p>Quantity :</p>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        dispatch(decreaseCartQuantity({ id: item._id }))
+                      }
+                      className="px-2 py-0 border active:bg-red-300"
+                    >
+                      -
+                    </button>
+                    <p className="inline "> {item.quantity}</p>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        dispatch(increaseCartQuantity({ id: item._id }))
+                      }
+                      className="px-2 py-0 border active:bg-red-300"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className="flex justify-between">
+                    <p>
+                      price :{" "}
+                      <span>
+                        <FaRupeeSign className="inline" />
+                        {item.price}
+                      </span>
+                    </p>
+                    <p>
+                      SubTotal:{" "}
+                      <span>
+                        {" "}
+                        <FaRupeeSign className="inline" />
+                        {item.price * item.quantity}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="flex justify-end mt-3">
+                    <p
+                      onClick={() =>
+                        dispatch(
+                          removeFromCart({
+                            id: item._id,
+                            price: item.price,
+                            quantity: item.quantity,
+                          })
+                        )
+                      }
+                      className="px-2 py-1 text-white transition-transform transform bg-red-400 rounded-lg cursor-pointer hover:ring-1 ring-blue-600 active:scale-95"
+                    >
+                      Delete
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex-1 hidden sm:block ">
               {" "}
-              <table className="w-full table-auto">
+              <table className="w-full table-auto ">
                 <thead>
                   <tr className="text-sm text-center border-b ">
                     <th className="p-2 mr-3 ">PRODUCT</th>
