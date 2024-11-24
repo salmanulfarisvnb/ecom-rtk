@@ -14,10 +14,9 @@ const ProductCard = ({ products }) => {
   };
 
   return (
-    <div className="transition-transform transform border rounded-md hover:scale-105 ">
-      <div>
-        <img className="w-full " src={products.image} alt="" />
-      </div>
+    <div className="transition-transform mx-auto max-sm:flex max-sm:flex-col items-center justify-center max-sm:w-[400px] transform border rounded-md hover:scale-105 ">
+      <img className="w-full " src={products.image} alt="" />
+
       <div className="p-3 text-sm">
         <p className="font-semibold ">{products.name}</p>
         <p className="text-gray-500 ">$ {products.price}</p>

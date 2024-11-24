@@ -44,7 +44,7 @@ const Cart = () => {
             shopping cart
           </h1>
           <div className="flex flex-col items-center justify-between sm:items-start gap-y-7 md:flex-row mt-7">
-            <div className="flex items-center justify-center sm:hidden">
+            <div className="flex flex-col items-center justify-center sm:hidden">
               {cart.map((item, index) => (
                 <div className=" p-5 w-full max-w-[300px]" key={index}>
                   <img
@@ -53,7 +53,7 @@ const Cart = () => {
                     alt=""
                   />
                   <p className="m-3 font-semibold">{item.name}</p>
-                  <div className="flex justify-center gap-3 mb-3">
+                  <div className="flex items-center justify-center gap-3 mb-3">
                     <p>Quantity :</p>
                     <button
                       type="button"
