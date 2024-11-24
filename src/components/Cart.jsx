@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import emptyCart from "../assets/images/empty-cart.png";
 import { FaRupeeSign, FaTrash } from "react-icons/fa";
 import Model from "./Model";
 import CreateAddress from "./CreateAddress";
+import {
+  decreaseCartQuantity,
+  increaseCartQuantity,
+  removeFromCart,
+} from "../redux/cartSlice";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
   const { totalPrice } = useSelector((state) => state.cart);
   const [address, setAddress] = useState("calicut po");
@@ -50,7 +56,7 @@ const Cart = () => {
                 </thead>
                 <tbody>
                   {cart.map((item, index) => (
-                    <tr className="text-center border-b ">
+                    <tr key={index} className="text-center border-b ">
                       <td className="flex items-center text-sm font-semibold  w-[200px] gap-3 p-3 ">
                         <img className="size-12" src={item.image} alt="" />
                         <p>{item.name}</p>
@@ -60,11 +66,23 @@ const Cart = () => {
                         {item.price}
                       </td>
                       <td className="">
-                        <button className="px-2 py-0 border active:bg-red-300">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            dispatch(decreaseCartQuantity({ id: item._id }))
+                          }
+                          className="px-2 py-0 border active:bg-red-300"
+                        >
                           -
                         </button>
                         <p className="inline "> {item.quantity}</p>
-                        <button className="px-2 py-0 border active:bg-red-300">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            dispatch(increaseCartQuantity({ id: item._id }))
+                          }
+                          className="px-2 py-0 border active:bg-red-300"
+                        >
                           +
                         </button>
                       </td>
@@ -73,7 +91,18 @@ const Cart = () => {
                         {item.price * item.quantity.toFixed()}
                       </td>
                       <td className="text-red-500 text-start">
-                        <FaTrash />
+                        <FaTrash
+                          className="cursor-pointer "
+                          onClick={() =>
+                            dispatch(
+                              removeFromCart({
+                                id: item._id,
+                                price: item.price,
+                                quantity: item.quantity,
+                              })
+                            )
+                          }
+                        />
                       </td>
                     </tr>
                   ))}
