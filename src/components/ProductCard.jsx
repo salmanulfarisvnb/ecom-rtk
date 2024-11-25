@@ -15,9 +15,9 @@ const ProductCard = ({ products }) => {
 
   return (
     <div className="mx-auto">
-      <div className="transition-transform transform border rounded-md hover:scale-105 ">
+      <div className="overflow-hidden border rounded-md ">
         <img
-          className="w-full max-sm:h-[400px] object-contain "
+          className="w-full hover:scale-110 duration-200 transition-transform transform  max-sm:h-[400px] object-contain "
           src={products.image}
           alt=""
         />
@@ -26,7 +26,7 @@ const ProductCard = ({ products }) => {
           <p className="font-semibold ">{products.name}</p>
           <p className="text-gray-500 ">$ {products.price}</p>
           <div className="flex justify-between ">
-            <div className="flex text-sm text-yellow-500">
+            <div className="flex items-center text-sm text-yellow-500">
               <FaStar />
               <FaStar />
               <FaStar />
@@ -35,12 +35,12 @@ const ProductCard = ({ products }) => {
             <div>
               <div
                 onClick={(e) => handleAddToCart(e, products)}
-                className="flex group hover:w-full justify-center cursor-pointer group  px-[10px] py-1 text-sm text-white bg-red-500 border rounded-full bottom-2"
+                className="flex group   hover:w-full justify-center cursor-pointer group  hover:px-[10px] hover:py-1 text-sm text-white bg-red-500 border rounded-full bottom-2"
               >
-                <span className="hidden transition-all duration-500 group-hover:block">
+                <span className="font-bold transition-transform duration-200 transform scale-0 group-hover:scale-110 group-hover:block">
                   Add to Cart
                 </span>
-                <span className=" group-hover:hidden">+</span>
+                <span className="mr-3 font-bold group-hover:hidden">+</span>
               </div>
             </div>
           </div>

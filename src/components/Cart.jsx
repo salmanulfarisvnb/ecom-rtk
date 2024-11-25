@@ -210,7 +210,7 @@ const Cart = () => {
               <div className="flex items-center justify-center mt-5">
                 <button
                   onClick={() => navigate("/checkout")}
-                  className="p-3 font-bold text-white uppercase transition-transform transform bg-red-500 border rounded-lg hover:ring-1 ring-black active:scale-95"
+                  className="w-full p-3 text-lg hover:bg-white transition-all font-black hover:text-red-600 hover:ring-2 ring-blue-600 active:text-transparent text-white bg-red-600 rounded-md max-w-[300px]"
                 >
                   Proceed to checkout
                 </button>
