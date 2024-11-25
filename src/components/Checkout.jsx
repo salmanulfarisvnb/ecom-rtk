@@ -1,18 +1,34 @@
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp, FaRupeeSign } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const navigate = useNavigate();
+  const { cart, totalPrice } = useSelector((state) => state.cart);
   const [informationToggle, setInformationToggle] = useState(false);
   const [shippingToggle, setShippingToggle] = useState(false);
   const [paymentToggle, setPaymentToggle] = useState(false);
   const [payment, setPayment] = useState("cod");
-  const { cart, totalPrice } = useSelector((state) => state.cart);
+  const [shippingInfo, setShippingInfo] = useState({
+    address: "",
+    city: "",
+    zip: "",
+  });
+
+  const handleOrder = () => {
+    navigate("/order-confirmation", {
+      state: { orderId: "1234", shippingInfo, cart, totalPrice },
+    });
+  };
+
   return (
     <div className="container mx-auto p-7">
       <h1 className="text-2xl font-bold ">CHECKOUT</h1>
       <div className="flex flex-col justify-between gap-5 lg:items-start sm:flex-row sm:gap-16">
         <div className="flex-1 w-full">
+          {/* .............BILLING INFORMATION............. */}
+
           <div className="p-3 mt-4 text-sm font-bold border rounded-md">
             <p
               className="flex justify-between text-lg cursor-pointer"
@@ -51,6 +67,9 @@ const Checkout = () => {
               </div>
             </div>
           </div>
+
+          {/* ..........SHIPPIN INFORMATION.......... */}
+
           <div className="p-3 mt-4 text-sm font-bold border rounded-md">
             <p
               className="flex justify-between text-lg cursor-pointer"
@@ -64,6 +83,12 @@ const Checkout = () => {
                 <label className="text-gray-600 ">Address</label>
                 <br />
                 <input
+                  onChange={(e) =>
+                    setShippingInfo({
+                      ...shippingInfo,
+                      address: e.target.value,
+                    })
+                  }
                   className="w-full p-3 border rounded-md outline-none"
                   type="text"
                   placeholder="Enter Address"
@@ -73,6 +98,12 @@ const Checkout = () => {
                 <label className="text-gray-600 ">City</label>
                 <br />
                 <input
+                  onChange={(e) =>
+                    setShippingInfo({
+                      ...shippingInfo,
+                      city: e.target.value,
+                    })
+                  }
                   className="w-full p-3 border rounded-md outline-none"
                   type="text"
                   placeholder="Enter City"
@@ -82,6 +113,12 @@ const Checkout = () => {
                 <label className="text-gray-600 ">Zip Code</label>
                 <br />
                 <input
+                  onChange={(e) =>
+                    setShippingInfo({
+                      ...shippingInfo,
+                      zip: e.target.value,
+                    })
+                  }
                   className="w-full p-3 border rounded-md outline-none"
                   type="text"
                   placeholder="Enter Zip Code"
@@ -89,6 +126,8 @@ const Checkout = () => {
               </div>
             </div>
           </div>
+          {/* ..........PAYMENT INFORMATION.......... */}
+
           <div className="p-3 mt-4 text-sm font-bold border rounded-md">
             <p
               className="flex justify-between text-lg cursor-pointer"
@@ -199,7 +238,10 @@ const Checkout = () => {
           </div>
           <div className="flex justify-center">
             {" "}
-            <button className="w-full p-3 text-lg hover:bg-white transition-all font-black hover:text-red-600 hover:ring-2 ring-blue-600 active:text-transparent text-white bg-red-600 rounded-md max-w-[300px]">
+            <button
+              onClick={handleOrder}
+              className="w-full p-3 text-lg hover:bg-white transition-all font-black hover:text-red-600 hover:ring-2 ring-blue-600 active:text-transparent text-white bg-red-600 rounded-md max-w-[300px]"
+            >
               Place Order
             </button>
           </div>

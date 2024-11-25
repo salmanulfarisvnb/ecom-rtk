@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
+import OrderConfirmation from "./components/OrderConfirmation";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,6 +25,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="order-confirmation" element={<OrderConfirmation />} />
       </Route>
     ),
     {
