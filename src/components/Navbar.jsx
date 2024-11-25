@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import Model from "./Model";
+import Login from "./Login";
+import Register from "./Register";
 
 const Navbar = () => {
-  const {cart} = useSelector(state=>state.cart)
+  const { cart } = useSelector((state) => state.cart);
+  const [model, setModel] = useState(false);
+  const [login, setLogin] = useState(true);
   return (
     <nav className="sticky top-[-5rem] z-10 bg-white shadow-md ">
       <div className="container flex items-center justify-between p-4 mx-auto xl:p-12">
@@ -28,13 +33,15 @@ const Navbar = () => {
               {cart.length === 0 ? (
                 ""
               ) : (
-                <p className="absolute top-[-12px] right-[-8px] flex items-center justify-center text-[10px] font-black bg-yellow-300 rounded-full w-full h-full ftext-white rig justify-centerht-0">
+                <p className="absolute top-[-12px] right-[-8px] flex items-center justify-center text-[10px] font-black bg-yellow-300 rounded-full w-full h-full ">
                   {cart.length}
                 </p>
               )}
             </div>
           </Link>
-          <button className="hidden md:block">Login | Register</button>
+          <button onClick={() => setModel(true)} className="hidden md:block">
+            Login | Register
+          </button>
           <button className="block md:hidden">
             <FaUser className="text-lg " />
           </button>
@@ -46,6 +53,13 @@ const Navbar = () => {
         <NavLink to={"contact"}>Contact</NavLink>
         <NavLink to={"about"}>About</NavLink>
       </div>
+      <Model model={model} setModel={setModel}>
+        {login ? (
+          <Login setLogin={setLogin} />
+        ) : (
+          <Register setLogin={setLogin} />
+        )}
+      </Model>
     </nav>
   );
 };
