@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Model from "./Model";
 import Login from "./Login";
 import Register from "./Register";
+import { filterByFeature } from "../redux/productSlice";
 
 const Navbar = () => {
   const { cart } = useSelector((state) => state.cart);
   const [model, setModel] = useState(false);
   const [login, setLogin] = useState(true);
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+
+    dispatch(filterByFeature(search));
+    navigate("filter-page");
+  };
   return (
     <nav className="sticky top-[-5rem] z-10 bg-white shadow-md ">
       <div className="container flex items-center justify-between p-4 mx-auto xl:p-12">
@@ -19,6 +29,7 @@ const Navbar = () => {
         <div className="relative flex-1 mx-4 ">
           <form>
             <input
+              onChange={handleSearch}
               className="w-full px-4 py-2 border "
               type="text"
               placeholder="Search Product"
